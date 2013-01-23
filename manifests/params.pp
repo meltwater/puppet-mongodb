@@ -17,5 +17,5 @@ class mongodb::params {
 
 	# directory for mongo logfiles
 
-	$logdir = '/var/log/mongo'
+	$logdir = '/var/log/mongodb'
 }
