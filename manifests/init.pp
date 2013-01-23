@@ -80,6 +80,12 @@ class mongodb inherits mongodb::params {
 			require    => [File["/etc/init.d/mongod_${mongod_instance}"],Service['mongod']],
 			before     => Anchor['mongodb::end']
 		}
+
+		exec { "add_mongod_service":
+    	command   => "/sbin/chkconfig --add mongod_${mongod_instance}",
+    	path      => ['/bin', '/sbin', '/usr/bin', '/usr/sbin'],
+    	onlyif    =>  "test `/sbin/chkconfig --list | /bin/grep mongod_${mongod_instance} | /usr/bin/wc -l` -eq 0",
+  	}
 	}
 
 	define mongos (
@@ -114,6 +120,12 @@ class mongodb inherits mongodb::params {
 			require    => [File["/etc/init.d/mongos_${mongos_instance}"],Service['mongod']],
 			before     => Anchor['mongodb::end']
 		}
+
+		exec { "add_mongod_service":
+    	command   => "/sbin/chkconfig --add mongod_${mongos_instance}",
+    	path      => ['/bin', '/sbin', '/usr/bin', '/usr/sbin'],
+    	onlyif    =>  "test `/sbin/chkconfig --list | /bin/grep mongos_${mongod_instance} | /usr/bin/wc -l` -eq 0",
+  	}
 	}
 
 }
