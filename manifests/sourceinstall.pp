@@ -25,6 +25,6 @@ class mongodb::sourceinstall {
     target => $install_path
   }
 
-  mongodb::source_symlink( $binaries )
+  mongodb::source_symlink{ $binaries: }
 
 }
