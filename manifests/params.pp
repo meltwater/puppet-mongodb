@@ -18,4 +18,6 @@ class mongodb::params {
 	# directory for mongo logfiles
 
 	$logdir = '/var/log/mongodb'
+
+  $version = '2.2.0'
 }
