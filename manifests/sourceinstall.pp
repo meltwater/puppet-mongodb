@@ -25,10 +25,14 @@ class mongodb::sourceinstall {
     target => $install_path
   }
 
-  file { $binaries:
-    ensure => link,
-    path   => "/usr/bin/${name}",
-    target => "/etc/alternatives/mongodb/${name}",
+  define make_symlink() {
+    file { $name:
+      ensure => link,
+      path   => "/usr/bin/${name}",
+      target => "/etc/alternatives/mongodb/${name}",
+    }
   }
+  
+  make_symlink( $binaries )
 
 }
