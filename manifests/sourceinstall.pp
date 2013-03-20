@@ -25,14 +25,6 @@ class mongodb::sourceinstall {
     target => $install_path
   }
 
-  define mongodb::sourceinstall::make_symlink() {
-    file { $name:
-      ensure => link,
-      path   => "/usr/bin/${name}",
-      target => "/etc/alternatives/mongodb/${name}",
-    }
-  }
-  
-  mongodb::sourceinstall::make_symlink( $binaries )
+  mongodb::source_symlink( $binaries )
 
 }
