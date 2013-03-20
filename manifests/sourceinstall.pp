@@ -15,7 +15,7 @@ class mongodb::sourceinstall {
     group  => $mongodb::params::run_as_group,
   }
 
-  archive { $full_name :
+  archive { $download_path :
     url        => $download_path ,
     target     => $install_path,
     src_target => '/tmp',
