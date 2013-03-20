@@ -15,10 +15,12 @@ class mongodb inherits mongodb::params {
 
 	case $operatingsystem {
 		/(?i)(Debian|Ubuntu)/: {
-			class { 'mongodb::install': }
+      $mongodb::params::installation_type = 'mongodb::install'
+			class { $mongodb::params::installation_type: }
 		}
 		/(?i)(RedHat|CentOS)/: {
-			class { 'mongodb::sourceinstall': }
+      $mongodb::params::installation_type = 'mongodb::sourceinstall'
+			class { $mongodb::params::installation_type: }
 		}
 		default: {
 			fail "Unsupported OS ${operatingsystem} in 'mongodb' module"
