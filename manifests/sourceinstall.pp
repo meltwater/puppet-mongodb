@@ -25,7 +25,7 @@ class mongodb::sourceinstall {
     target => $install_path
   }
 
-  define make_symlink() {
+  define mongodb::sourceinstall::make_symlink() {
     file { $name:
       ensure => link,
       path   => "/usr/bin/${name}",
@@ -33,6 +33,6 @@ class mongodb::sourceinstall {
     }
   }
   
-  make_symlink( $binaries )
+  mongodb::sourceinstall::make_symlink( $binaries )
 
 }
