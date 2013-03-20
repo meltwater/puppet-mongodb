@@ -27,8 +27,8 @@ class mongodb::sourceinstall {
 
   file { $binaries:
     ensure => link,
-    path   => "/usr/bin/${title}",
-    target => "/etc/alternatives/mongodb/${title}",
+    path   => "/usr/bin/${name}",
+    target => "/etc/alternatives/mongodb/${name}",
   }
 
 }
