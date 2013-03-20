@@ -20,4 +20,10 @@ class mongodb::params {
 	$logdir = '/var/log/mongodb'
 
   $version = '2.2.0'
+
+  $installation_type = $::operatingsystem ? {
+    /(?i)(Debian|Ubuntu)/ => 'mongodb::install',
+    /(?i)(RedHat|CentOS)/ => 'mongodb::sourceinstall',
+    default               => undef
+  }
 }

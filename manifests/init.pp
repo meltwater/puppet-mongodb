@@ -14,12 +14,7 @@ class mongodb inherits mongodb::params {
 	}
 
 	case $operatingsystem {
-		/(?i)(Debian|Ubuntu)/: {
-      $mongodb::params::installation_type = 'mongodb::install'
-			class { $mongodb::params::installation_type: }
-		}
-		/(?i)(RedHat|CentOS)/: {
-      $mongodb::params::installation_type = 'mongodb::sourceinstall'
+		/(?i)(Debian|Ubuntu|RedHat|CentOS)/: {
 			class { $mongodb::params::installation_type: }
 		}
 		default: {
