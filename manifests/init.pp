@@ -65,11 +65,11 @@ class mongodb inherits mongodb::params {
 				mode    => '0755',
 				# no auto restart of a db because of a config change
 				#	notify  => Class['mongodb::service'],
-				require => Class['mongodb::install'];
+				require => Class[$mongodb::params::installation_type];
 			"/etc/init.d/mongod_${mongod_instance}":
 				content => template('mongodb/mongod-init.conf.erb'),
 				mode    => '0755',
-				require => Class['mongodb::install'],
+				require => Class[$mongodb::params::installation_type],
 		}
 
 		service { "mongod_${mongod_instance}":
@@ -105,11 +105,11 @@ class mongodb inherits mongodb::params {
 				mode    => '0755',
 				# no auto restart of a db because of a config change
 				#	notify  => Class['mongodb::service'],
-				require => Class['mongodb::install'];
+				require => Class[$mongodb::params::installation_type];
 			"/etc/init.d/mongos_${mongos_instance}":
 				content => template('mongodb/mongos-init.conf.erb'),
 				mode    => '0755',
-				require => Class['mongodb::install'],
+				require => Class[$mongodb::params::installation_type],
 		}
 
 		service { "mongos_${mongos_instance}":
