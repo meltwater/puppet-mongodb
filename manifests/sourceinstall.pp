@@ -5,7 +5,7 @@ class mongodb::sourceinstall {
 
   $full_name     = sprintf( 'mongodb-linux-%s-%s', $::architecture, $mongodb::params::version )
   $download_path = sprintf( 'http://downloads.mongodb.org/linux/%s.tgz', $full_name )
-  $install_path  = "/usr/local/${full_name}"
+  $install_path  = "/usr/local/"
 
   $binaries = [ 'mongo', 'mongodump', 'mongofiles', 'mongorestore', 'mongosniff', 'mongod', 'mongoexport', 'mongoimport', 'mongos', 'mongostat' ]
 
