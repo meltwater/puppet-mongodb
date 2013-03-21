@@ -10,7 +10,6 @@ class mongodb::sourceinstall {
   $binaries = [ 'mongo', 'mongodump', 'mongofiles', 'mongorestore', 'mongosniff', 'mongod', 'mongoexport', 'mongoimport', 'mongos', 'mongostat' ]
 
   file { $install_path:
-    ensure => directory,
     owner  => $mongodb::params::run_as_user,
     group  => $mongodb::params::run_as_group,
   }
@@ -29,5 +28,6 @@ class mongodb::sourceinstall {
   }
 
   mongodb::source_symlink{ $binaries: }
+  Archive[$full_name] -> File[$install_path] -> File['/etc/alternatives/mongodb']
 
 }
