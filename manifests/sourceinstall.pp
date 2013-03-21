@@ -28,6 +28,5 @@ class mongodb::sourceinstall {
   }
 
   mongodb::source_symlink{ $binaries: }
-  Archive[$full_name] -> File[$install_path] -> File['/etc/alternatives/mongodb']
 
 }
