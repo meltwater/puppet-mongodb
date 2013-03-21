@@ -27,13 +27,13 @@ class mongodb::sourceinstall {
     target => $install_path
   }
 
-  mongodb::source_symlink{ $binaries: }o
+  mongodb::source_symlink{ $binaries: }
 
-  exec { "mv2rightspot":
-      command => "/bin/mv $install_path/$full_name /usr/local",
-      creates => "$install_path/bin/mongo"
+  exec { "cleanup":
+      command => "/bin/mv $install_path/$full_name/* $install_path && rmdir $install_path/$full_name",
+      creates => "$install_path/bin/mongo",
   }
 
-  Archive["$full_name"] -> Exec['mv2rightspot']
+  Archive["$full_name"] -> Exec['cleanup']
 
 }
