@@ -13,7 +13,7 @@ class mongodb inherits mongodb::params {
 		before => Anchor['mongodb::end'],
 	}
 
-	case $operatingsystem {
+	case $::operatingsystem {
 		/(?i)(Debian|Ubuntu|RedHat|CentOS)/: {
 			class { $mongodb::params::installation_type: }
 		}
