@@ -9,6 +9,16 @@ class mongodb::sourceinstall {
 
   $binaries = [ 'mongo', 'mongodump', 'mongofiles', 'mongorestore', 'mongosniff', 'mongod', 'mongoexport', 'mongoimport', 'mongos', 'mongostat' ]
 
+  user { $mongodb::params::run_as_user:
+    comment => 'MongoDB Database Server',
+    home    => $install_path,
+    shell   => '/sbin/nologin',
+    uid     => 102,
+  }->
+  group { $mongodb::params::run_as_group:
+    gid     => 102,
+  }
+
   file { $install_path:
     owner  => $mongodb::params::run_as_user,
     group  => $mongodb::params::run_as_group,
