@@ -13,10 +13,8 @@ class mongodb::sourceinstall {
     comment => 'MongoDB Database Server',
     home    => $install_path,
     shell   => '/sbin/nologin',
-    uid     => 102,
   }->
   group { $mongodb::params::run_as_group:
-    gid     => 102,
   }
 
   file { $install_path:
