@@ -15,6 +15,12 @@ class mongodb::sourceinstall {
     shell   => '/sbin/nologin',
   }->
   group { $mongodb::params::run_as_group:
+  }->
+  file { $mongodb::params::logdir:
+    ensure => directory,
+    owner  => $mongodb::params::run_as_user,
+    group  => $mongodb::params::run_as_group,
+    mode   => '0775',
   }
 
   file { $install_path:
