@@ -8,12 +8,7 @@ class mongodb::logrotate {
 	anchor { 'mongodb::logrotate::begin': }
 	anchor { 'mongodb::logrotate::end': }
 
-	if ! defined(Package['logrotate']) {
-		package {
-			'logrotate':
-				ensure => installed;
-		}
-	}
+	realize(Package['logrotate'])
 
 	file {
 		'/etc/logrotate.d/mongodb':
