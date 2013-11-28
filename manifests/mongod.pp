@@ -30,7 +30,7 @@ define mongodb::mongod (
                 ensure     => $mongod_running,
                 hasstatus  => true,
                 hasrestart => true,
-                require    => [File["/etc/init.d/mongod_${mongod_instance}"],Service['mongod'],Exec["add_mongod_service"]],
+                require    => [File["/etc/init.d/mongod_${mongod_instance}"],File["/etc/mongod_${mongod_instance}.conf"],Service['mongod'],Exec["add_mongod_service"]],
                 before     => Anchor['mongodb::end']
         }
 
@@ -38,6 +38,7 @@ define mongodb::mongod (
                 command   => "/sbin/chkconfig --add mongod_${mongod_instance}",
                 path      => ['/bin', '/sbin', '/usr/bin', '/usr/sbin'],
                 onlyif    =>  "test `/sbin/chkconfig --list | /bin/grep mongod_${mongod_instance} | /usr/bin/wc -l` -eq 0",
+                require   => File["/etc/init.d/mongod_${mongod_instance}"]
         }
 }
 
