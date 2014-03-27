@@ -1,3 +1,4 @@
+#doc
 define mongodb::source_symlink() {
   file { $name:
     ensure => link,

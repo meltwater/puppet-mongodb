@@ -5,15 +5,15 @@
 
 class mongodb::logrotate {
 
-	anchor { 'mongodb::logrotate::begin': }
-	anchor { 'mongodb::logrotate::end': }
+  anchor { 'mongodb::logrotate::begin': }
+  anchor { 'mongodb::logrotate::end': }
 
-	realize(Package['logrotate'])
+  realize(Package['logrotate'])
 
-	file {
-		'/etc/logrotate.d/mongodb':
-			content => template('mongodb/logrotate.conf.erb'),
-			require => [Package['logrotate'],Class[$mongodb::params::installation_type],Class['mongodb::params']],
-			before => Anchor['mongodb::logrotate::end']
-	}
+  file {
+    '/etc/logrotate.d/mongodb':
+      content => template('mongodb/logrotate.conf.erb'),
+      require => [Package['logrotate'],Class[$mongodb::params::installation_type],Class['mongodb::params']],
+      before  => Anchor['mongodb::logrotate::end']
+  }
 }
