@@ -31,6 +31,8 @@ port=<%= @mongod_port %>
 replSet=<%= @mongod_replSet %>
 <% end %>
 
+<% if @mongod_add_options != "" -%>
 <% @mongod_add_options.each do |addoption| %>
 <%= addoption %>
+<% end %>
 <% end %>
