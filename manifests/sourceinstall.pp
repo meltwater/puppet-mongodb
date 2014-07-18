@@ -32,7 +32,7 @@ class mongodb::sourceinstall {
   archive { $full_name:
     url        => $download_path ,
     target     => $install_path,
-    src_target => '/tmp',
+    src_target => '/usr/local/src',
     checksum   => false,
     require    => File[$install_path],
   }
