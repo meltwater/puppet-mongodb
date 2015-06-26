@@ -13,11 +13,11 @@ rest=<%= @mongod_rest %>
 
 fork=<%= @mongod_fork %>
 
-<% if @mongod_shardsvr != "false" -%>
+<% if @mongod_shardsvr -%>
 shardsvr=<%= @mongod_shardsvr %>
 <% end %>
 
-<% if @mongod_configsvr != "false" -%>
+<% if @mongod_configsvr -%>
 configsvr=<%= @mongod_configsvr %>
 <% end %>
 

@@ -1,7 +1,9 @@
 # Class: mongodb::params
 #
 #
-class mongodb::params {
+class mongodb::params (
+  $version = '2.2.0',
+) {
 
   $run_as_user = 'mongodb'
   $run_as_group = 'mongodb'
@@ -18,8 +20,6 @@ class mongodb::params {
   # directory for mongo logfiles
 
   $logdir = '/var/log/mongodb'
-
-  $version = '2.2.0'
 
   $installation_type = $::operatingsystem ? {
     /(?i)(Debian|Ubuntu)/ => 'mongodb::install',
