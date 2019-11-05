@@ -1,3 +1,8 @@
+# Deprecated
+
+We are no longer maintaining this fork.
+If you need a Puppet Module for MongodB, you may want to take a look at https://github.com/voxpupuli/puppet-mongodb.
+
 # MongoDB module
 
 This module manages mongodb services. It provides the functions for mongod and mongos instances.
